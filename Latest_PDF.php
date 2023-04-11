@@ -2,18 +2,17 @@
 
 /**
  * Latest PDF
- *
- * &nbsp;
- * 
- * 
  */
 // Latest PDF By Hussain Saad +965 60907666 hs777it@gmail.com
 add_action('parse_request', 'wphs_latest_pdf');
 function wphs_latest_pdf($request)
 {
 	date_default_timezone_set('Asia/Kuwait');
+	$yesterday = new DateTime('yesterday');
   if (isset($_GET['pdf']) && $_GET['pdf'] == '20700EAD-276B-4C9E-A491-2B01C69061DB') {
-	$url = get_option( 'siteurl' )."/pdf/" . date('Y') . "/" . date("d-m-Y") . ".pdf"; // date("d-n-Y")
+	// $url = get_option( 'siteurl' )."/pdf/" . date('Y') . "/" . date("d-m-Y",strtotime("yesterday")) . ".pdf"; // date("d-n-Y")
+	// $url = get_option( 'siteurl' )."/pdf/" . date('Y') . "/" . date('d.m.Y',strtotime("-1 days")) . ".pdf"; 
+	$url = get_option( 'siteurl' )."/pdf/" . date('Y') . "/" . $yesterday->format('d-m-Y') . ".pdf"; 
     wp_redirect($url);
       exit;
   }
